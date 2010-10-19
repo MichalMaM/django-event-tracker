@@ -18,8 +18,13 @@ def track(event, params):
     a short-term network failure to disable one thread from commucating with
     the queue at the cost of retrying the connection every time.
     """
-   
-    ProcessEventTask.delay((event, time(), params))
+    tstart = datetime.now()
+    print event,"-start: ", tstart
+    ProcessEventTask.delay((event, time(), params))    
+    tend = datetime.now()
+    print event,"-end: ", tend
+    print event,"-diff: ", tend-tstart
+    
 
 
 def collect_event(message):
