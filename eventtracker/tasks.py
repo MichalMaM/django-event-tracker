@@ -33,10 +33,17 @@ def collect_event(message):
     """
     collection = None
     try:
+	tstart = datetime.now()
+	print "-start: ", tstart
+
         collection = models.get_mongo_collection()
         e, t, p = message
         models.save_event(collection, e, t, p)
 	print e,": ", datetime.now()
+	
+	tend = datetime.now()
+	print "-end: ", tend
+	print "-diff: ", tend-tstart
 
     finally:
         if collection:
